@@ -13,4 +13,9 @@ export const arrayHandler = (num) => {
 
 const array = [1, 2, 3, 4, 5]
 
-console.log(array)
+const promisesCalls = array.reduce(async (promise, currentItem) => {
+  await promise
+  const res = await arrayHandler(currentItem)
+  console.log(res)
+  return promise
+}, Promise.resolve())
