@@ -200,17 +200,71 @@
               </div>
             </div>
           </li>
-          <!-- <li class="text-center space-y-[18px]">
-            <img class="w-[362px] h-[252px] bg-gray-light rounded-[85px]" src="./media/dest1.jpg" alt="Mountain Hiking Tour">
-            <div>
-              <p class="text-[26px] font-medium leading-[26px]">Mountain Hiking Tour</p>
-              <p class="text-[26px] font-medium leading-[26px]">Mountain Hiking Tour</p>
-              <div class="flex items-center justify-between">
-                <span>$89 /Person</span>
-                <button>Book Now</button>
-              </div>
+        </ul>
+      </div>
+    </section>
+    <!-- Top destinations -->
+    <section class="section">
+      <div class="app-container flex-col items-center">
+        <h2 class="text-[56px] font-semibold leading-[1.18] mb-[16px]">Top destinations</h2>
+        <p class="text-gray-light leading-4 mb-7">Sost Brilliant reasons Entrada should be your one-stop-shop!</p>
+        <ul class="flex gap-[14px]">
+          <li><button class="text-[14px] leading-[14px] hover:text-white hover:bg-black py-3 px-4 border border-black rounded-[46px]" type="button">London</button></li>
+          <li><button class="text-[14px] leading-[14px] hover:text-white hover:bg-black py-3 px-4 border border-black rounded-[46px]" type="button">Bangkok</button></li>
+          <li><button class="text-[14px] leading-[14px] hover:text-white hover:bg-black py-3 px-4 border border-black rounded-[46px]" type="button">England</button></li>
+          <li><button class="text-[14px] leading-[14px] hover:text-white hover:bg-black py-3 px-4 border border-black rounded-[46px]" type="button">Singapore</button></li>
+          <li><button class="text-[14px] leading-[14px] hover:text-white hover:bg-black py-3 px-4 border border-black rounded-[46px]" type="button">Italy</button></li>
+        </ul>
+
+        <ul class="grid gap-x-[30px] gap-y-[13px] mt-[51px]">
+          <li class="box1 relative">
+            <img class="w-[270px] h-[250px] rounded-[20px]" src="./media/card1.jpg" alt="House">
+            <span class="absolute top-6 left-6 flex items-center justify-center w-[42px] h-6 bg-white text-[14px] leading-[14px] rounded-xl">3.5</span>
+            <div class="absolute bottom-6 left-6 flex flex-col">
+              <span class="text-white text-[20px] leading-5">Vietnam</span>
+              <span class="text-white text-[14px] leading-[14px]">Worefall</span>
             </div>
-          </li> -->
+          </li>
+          <li class="box2 relative">
+            <img class="w-[270px] h-[250px] rounded-[20px] mt-[13px]" src="./media/card2.jpg" alt="Building">
+            <span class="absolute top-6 left-6 flex items-center justify-center w-[42px] h-6 bg-white text-[14px] leading-[14px] rounded-xl">3.5</span>
+            <div class="absolute bottom-6 left-6 flex flex-col gap-[10px]">
+              <span class="text-white text-[20px] leading-5">Vietnam</span>
+              <span class="text-white text-[14px] leading-[14px]">Worefall</span>
+            </div>
+          </li>
+          <li class="box3 relative">
+            <img class="w-[370px] h-[526px] rounded-[20px]" src="./media/card3.jpg" alt="Corner of the street">
+            <span class="absolute top-6 left-6 flex items-center justify-center w-[42px] h-6 bg-black text-white text-[14px] leading-[14px] rounded-xl">3.5</span>
+            <div class="absolute bottom-6 left-6 flex flex-col gap-[10px]">
+              <span class="text-white text-[20px] leading-5">Vietnam</span>
+              <span class="text-white text-[14px] leading-[14px]">Worefall</span>
+            </div>
+          </li>
+          <li class="box4 relative">
+            <img class="w-[470px] h-[250px] rounded-[20px]" src="./media/card4.jpg" alt="Bridge">
+            <span class="absolute top-6 left-6 flex items-center justify-center w-[42px] h-6 bg-black text-white text-[14px] leading-[14px] rounded-xl">3.5</span>
+            <div class="absolute bottom-6 left-6 flex flex-col gap-[10px]">
+              <span class="text-white text-[20px] leading-5">Vietnam</span>
+              <span class="text-white text-[14px] leading-[14px]">Worefall</span>
+            </div>
+          </li>
+          <li class="box5 relative">
+            <img class="w-[170px] h-[263px] rounded-[20px]" src="./media/card5.jpg" alt="Cathedral">
+            <span class="absolute top-6 left-6 flex items-center justify-center w-[42px] h-6 bg-black text-white text-[14px] leading-[14px] rounded-xl">3.5</span>
+            <div class="absolute bottom-6 left-6 flex flex-col gap-[10px]">
+              <span class="text-white text-[20px] leading-5">Vietnam</span>
+              <span class="text-white text-[14px] leading-[14px]">Worefall</span>
+            </div>
+          </li>
+          <li class="box6 relative">
+            <img class="w-[270px] h-[263px] rounded-[20px]" src="./media/card6.jpg" alt="Big Ben">
+            <span class="absolute top-6 left-6 flex items-center justify-center w-[42px] h-6 bg-black text-white text-[14px] leading-[14px] rounded-xl">3.5</span>
+            <div class="absolute bottom-6 left-6 flex flex-col gap-[10px]">
+              <span class="text-white text-[20px] leading-5">Vietnam</span>
+              <span class="text-white text-[14px] leading-[14px]">Worefall</span>
+            </div>
+          </li>
         </ul>
       </div>
     </section>
@@ -252,5 +306,59 @@
   border-radius: 5px;
   border: 1px solid #ccc;
   font-size: 16px;
+}
+
+.box1 {
+  grid-column: 1 / 2;
+  grid-row: 1 / 2;
+  /* grid-column-start: 1;
+   grid-column-end: 2;
+   grid-row-start: 1;
+   grid-row-end: 2; */
+}
+
+.box2 {
+  grid-column: 1 / 2;
+  grid-row: 2 / 3;
+  /* grid-column-start: 1;
+   grid-column-end: 2;
+   grid-row-start: 2;
+   grid-row-end: 3; */
+}
+
+.box3 {
+  grid-column: 2 / 3;
+  grid-row: 1 / 3;
+  /* grid-column-start: 2;
+   grid-column-end: 3;
+   grid-row-start: 1;
+   grid-row-end: 3; */
+}
+
+.box4 {
+  grid-column: 3 / 5;
+  grid-row: 1 / 2;
+  /* grid-column-start: 3;
+   grid-column-end: 5;
+   grid-row-start: 1;
+   grid-row-end: 2; */
+}
+
+.box5 {
+  grid-column: 3 / 4;
+  grid-row: 2 / 3;
+  /* grid-column-start: 3;
+   grid-column-end: 4;
+   grid-row-start: 2;
+   grid-row-end: 3; */
+}
+
+.box6 {
+  grid-column: 4 / 5;
+  grid-row: 2 / 3;
+  /* grid-column-start: 4;
+   grid-column-end: 5;
+   grid-row-start: 2;
+   grid-row-end: 3; */
 }
 </style>
