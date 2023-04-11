@@ -10,17 +10,19 @@ module.exports = {
   theme: {
     colors: {
       ...colors,
-      primary: '#0f172a',
-      gray: '#6b7280',
+      // primary: '#0f172a',
+      // gray: '#6b7280',
+      black: '#2D3134',
       orange: '#F66F4D',
-      'gray-light': '#f3f4f6',
-      'gray-ultra-light': '#e5e7eb',
-      'gray-medium': '#9ca3af',
-      'gray-dark': '#374151'
+      beige: '#FAF8ED',
+      'gray-light': '#5B5F62',
+      'gray-ultra-light': '#939597',
+      'gray-dark': '#2D3134'
     },
     fontFamily: {
       main: ['Inter', 'sans-serif'],
-      nav: ['Poppins', 'sans-serif']
+      nav: ['Poppins', 'sans-serif'],
+      sen: ['Sen', 'sans-serif']
     },
     extend: {}
   },
