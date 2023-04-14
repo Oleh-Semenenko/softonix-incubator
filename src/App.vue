@@ -45,7 +45,6 @@
     </div>
   </header>
   <main>
-    ь
     <!-- Hero -->
     <section class="section">
       <div class="app-container gap-[67px]">
@@ -268,6 +267,58 @@
         </ul>
       </div>
     </section>
+    <!-- Reviews -->
+    <section class="section">
+      <div class="app-container gap-[175px]">
+        <img class="block" src="./media/review.png" alt="" width="390" height="539">
+        <div class="mt-[60px] space-y-5 before:content-[''] before:block before:h-2 before:w-[67px] before:bg-gradient-to-br from-yellow-400 via-orange-400 to-red-400 before:rounded before:shadow-[0px 2px 6px rgba(229, 137, 24, 0.15)]">
+          <p class="font-semibold text-[56px] leading-[66px] mt-3 capitalize">A customer said about us:</p>
+          <div class="mt-[26px] space-y-[27px] bg-white p-[30px] rounded-[14px]">
+            <p class="text-[18px] leading-[30px] text-gray-light">
+              Salty helped me a lot in finding the best place for our first outdoor adventure trip. They responded very quickly and gave me a detailed account of the place—its history, as well as its best features.
+            </p>
+            <div class="flex justify-between items-end">
+              <div>
+                <svg class="w-[107px] h-[17px] inline-block">
+                  <use href="./media/symbol-defs.svg#icon-stars" />
+                </svg>
+                <p class="mt-[17px] text-[20px] text-black leading-none font-medium">Andrew Sarma</p>
+                <p class="mt-2 text-[12px] leading-none text-gray-light">Enterpreneur</p>
+              </div>
+              <div class="flex gap-4">
+                <button class="w-[54px] h-[54px] border border-gray-dark rounded-full hover:bg-gray-dark flex justify-center items-center hover:fill-transparent">
+                  <svg class="w-[6px] h-[12px] fill-gray-dark ">
+                    <use href="./media/symbol-defs.svg#icon-arrow_left" />
+                  </svg>
+                </button>
+                <button class="w-[54px] h-[54px] border border-gray-dark rounded-full hover:bg-gray-dark flex justify-center items-center">
+                  <svg class="w-[6px] h-[12px] fill-gray-dark hover:fill-transparent">
+                    <use href="./media/symbol-defs.svg#icon-arrow_right" />
+                  </svg>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- Subscribe -->
+    <section class="section">
+      <div class="app-container">
+        <div class="bg-orange-pale w-full flex flex-col items-center py-[75px] rounded-[30px]">
+          <h2 class="text-black font-semibold text-[40px] leading-none">Sign up to our newsletter</h2>
+          <p class="leading-[26px] text-gray-light inline-block max-w-[415px] text-center mt-4">Receive latest news, update, and many other things every week.</p>
+          <form class="mt-10 pl-[26px] pr-3 py-[10px] h-[60px] w-[450px] flex items-center justify-between bg-white rounded-xl">
+            <input class=" " type="text" placeholder="Enter Your email address">
+            <button class="bg-orange w-10 h-10 rounded-xl" type="submit">
+              <svg class="w-4 h-[17px] inline-block">
+                <use href="./media/symbol-defs.svg#icon-plane" />
+              </svg>
+            </button>
+          </form>
+        </div>
+      </div>
+    </section>
   </main>
   <footer>
     <div class="app-container">
@@ -297,12 +348,7 @@
   background-color: #fff;
 }
 
-/* .location-date-input label {
-  margin-right: 10px;
-} */
-
 .location-date-input input {
-  /* padding: 10px; */
   border-radius: 5px;
   border: 1px solid #ccc;
   font-size: 16px;
@@ -311,54 +357,30 @@
 .box1 {
   grid-column: 1 / 2;
   grid-row: 1 / 2;
-  /* grid-column-start: 1;
-   grid-column-end: 2;
-   grid-row-start: 1;
-   grid-row-end: 2; */
 }
 
 .box2 {
   grid-column: 1 / 2;
   grid-row: 2 / 3;
-  /* grid-column-start: 1;
-   grid-column-end: 2;
-   grid-row-start: 2;
-   grid-row-end: 3; */
 }
 
 .box3 {
   grid-column: 2 / 3;
   grid-row: 1 / 3;
-  /* grid-column-start: 2;
-   grid-column-end: 3;
-   grid-row-start: 1;
-   grid-row-end: 3; */
 }
 
 .box4 {
   grid-column: 3 / 5;
   grid-row: 1 / 2;
-  /* grid-column-start: 3;
-   grid-column-end: 5;
-   grid-row-start: 1;
-   grid-row-end: 2; */
 }
 
 .box5 {
   grid-column: 3 / 4;
   grid-row: 2 / 3;
-  /* grid-column-start: 3;
-   grid-column-end: 4;
-   grid-row-start: 2;
-   grid-row-end: 3; */
 }
 
 .box6 {
   grid-column: 4 / 5;
   grid-row: 2 / 3;
-  /* grid-column-start: 4;
-   grid-column-end: 5;
-   grid-row-start: 2;
-   grid-row-end: 3; */
 }
 </style>
