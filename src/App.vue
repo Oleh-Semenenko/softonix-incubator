@@ -3,7 +3,7 @@
   <header class="py-6">
     <div class="app-container items-center">
       <a class="mr-[72px]" href="/">
-        <svg class="w-[98px] h-[35px]">
+        <svg class="w-[98px] h-[35px] fill-gray-dark">
           <use href="./media/symbol-defs.svg#icon-logo" />
         </svg>
       </a>
@@ -38,7 +38,7 @@
       </nav>
       <button class="font-nav font-medium leading-4 text-orange py-[18px] px-[34px] border border-orange rounded-[27px] ">
         Book Now
-        <svg class="w-4 h-[15px] inline-block ml-1.5">
+        <svg class="w-4 h-[15px] inline-block ml-1.5 fill-orange">
           <use href="./media/symbol-defs.svg#icon-plane" />
         </svg>
       </button>
@@ -51,12 +51,12 @@
         <div class="mt-[74px]">
           <h1 class="font-sen font-bold text-[84px] leading-[86px]">Discover the Best Lovely Places</h1>
           <p class="text-[18px] leading-[1.56] text-gray-light mt-[26px]">Plan and book your perfect trip with expert advice, travel tips, destination information and inspiration from us.</p>
-          <div class="location-date-input mt-11 max-w-[500px] pt-5 pr-5 pb-[18px] pl-7 rounded-[38px] justify-between">
-            <label class="w-[136px] divide-y">Where
-              <input class="w-full border-0 border-transparent" type="text" placeholder="Cent er Point, Lo...">
+          <div class="location-date-input mt-11 max-w-[500px] pt-5 pr-5 pb-[18px] pl-7 rounded-[38px] justify-between divide-x-1">
+            <label class="w-[136px]">Where
+              <input class="w-full text-[12px] leading-none" type="text" placeholder="Cent er Point, Lo...">
             </label>
             <label class="w-[136px]">Date
-              <input class="w-full border-0 border-transparent" type="text" placeholder="09th March,2021">
+              <input class="w-full text-[12px] leading-none" type="text" placeholder="09th March,2021">
             </label>
             <button class="bg-orange w-[54px] h-[54px] rounded-full" type="submit">
               <svg class="w-7 h-7 inline-block">
@@ -74,13 +74,13 @@
         <h2 class="text-[56px] font-semibold leading-[56px]">Categories</h2>
         <p class="text-gray-light w-[370px]">Here are lots of interesting destinations to visit, but don’t be confused—they’re already grouped by category.</p>
         <div class="absolute top-0 right-[20px] flex gap-4">
-          <button class="w-[54px] h-[54px] border border-gray-dark rounded-full hover:bg-gray-dark flex justify-center items-center hover:fill-transparent">
-            <svg class="w-[6px] h-[12px] fill-gray-dark ">
+          <button class="w-[54px] h-[54px] border border-gray-dark rounded-full hover:bg-gray-dark flex justify-center items-center ">
+            <svg class="arrow-icon w-[6px] h-[12px] stroke-gray-dark">
               <use href="./media/symbol-defs.svg#icon-arrow_left" />
             </svg>
           </button>
           <button class="w-[54px] h-[54px] border border-gray-dark rounded-full hover:bg-gray-dark flex justify-center items-center">
-            <svg class="w-[6px] h-[12px] fill-gray-dark hover:fill-transparent">
+            <svg class="arrow-icon w-[6px] h-[12px] stroke-gray-dark">
               <use href="./media/symbol-defs.svg#icon-arrow_right" />
             </svg>
           </button>
@@ -117,21 +117,21 @@
     <!-- Experience -->
     <section class="section">
       <div class="app-container gap-[156px]">
-        <img class="block" src="./media/experience.png" alt="" width="541" height="582">
+        <img class="block" src="./media/experience.png" alt="" width="500" height="582">
         <div class="mt-[60px] space-y-5">
           <h2 class="font-semibold text-[20px] text-orange leading-[20px]">Our Experience</h2>
           <p class="font-semibold text-[56px] leading-[66px]">Our Stories Have Adventures</p>
           <p class="text-[18px] leading-[1.56] text-gray-light">We are experienced in bringing adventures to stay their journey, with all outdoor destinations in the world as our specialties. Start your adventure now! Nature has already called you!</p>
           <ul class="flex gap-5">
-            <li class="w-[166px] h-[178px] px-[30px] bg-white rounded-[14px] flex flex-col items-center justify-center gap-[18px]">
+            <li class="max-w-[166px] h-[178px] px-[30px] bg-white rounded-[14px] flex flex-col items-center justify-center gap-[18px]">
               <span class="text-orange font-semibold text-[46px] self-start">12K+</span>
               <p class="text-[21px] text-gray-ultra-light">Succes Journey</p>
             </li>
-            <li class="w-[166px] h-[178px] px-[30px] bg-white rounded-[14px] flex flex-col items-center justify-center gap-[18px]">
+            <li class="max-w-[166px] h-[178px] px-[30px] bg-white rounded-[14px] flex flex-col items-center justify-center gap-[18px]">
               <span class="text-orange font-semibold text-[46px] self-start">16+</span>
               <p class="text-[21px] text-gray-ultra-light">Awards Winning</p>
             </li>
-            <li class="w-[166px] h-[178px] px-[30px] bg-white rounded-[14px] flex flex-col items-center justify-center gap-[18px]">
+            <li class="max-w-[166px] h-[178px] px-[30px] bg-white rounded-[14px] flex flex-col items-center justify-center gap-[18px]">
               <span class="text-orange font-semibold text-[46px] self-start">20+</span>
               <p class="text-[21px] text-gray-ultra-light">Years Of Experience</p>
             </li>
@@ -144,13 +144,13 @@
       <div class="app-container flex-col gap-6 relative">
         <h2 class="text-[56px] font-semibold leading-[1.18]">Find Popular <br> Destination</h2>
         <div class="absolute top-0 right-[20px] flex gap-4">
-          <button class="w-[54px] h-[54px] border border-gray-dark rounded-full hover:bg-gray-dark flex justify-center items-center hover:fill-transparent">
-            <svg class="w-[6px] h-[12px] fill-gray-dark ">
+          <button class="w-[54px] h-[54px] border border-gray-dark rounded-full hover:bg-gray-dark flex justify-center items-center">
+            <svg class="arrow-icon w-[6px] h-[12px] stroke-gray-dark">
               <use href="./media/symbol-defs.svg#icon-arrow_left" />
             </svg>
           </button>
           <button class="w-[54px] h-[54px] border border-gray-dark rounded-full hover:bg-gray-dark flex justify-center items-center">
-            <svg class="w-[6px] h-[12px] fill-gray-dark hover:fill-transparent">
+            <svg class="arrow-icon w-[6px] h-[12px] stroke-gray-dark">
               <use href="./media/symbol-defs.svg#icon-arrow_right" />
             </svg>
           </button>
@@ -216,7 +216,7 @@
         </ul>
 
         <ul class="grid gap-x-[30px] gap-y-[13px] mt-[51px]">
-          <li class="box1 relative">
+          <li class="col-start-1 col-end-2 row-span-1 row-end-2 relative">
             <img class="w-[270px] h-[250px] rounded-[20px]" src="./media/card1.jpg" alt="House">
             <span class="absolute top-6 left-6 flex items-center justify-center w-[42px] h-6 bg-white text-[14px] leading-[14px] rounded-xl">3.5</span>
             <div class="absolute bottom-6 left-6 flex flex-col">
@@ -224,7 +224,7 @@
               <span class="text-white text-[14px] leading-[14px]">Worefall</span>
             </div>
           </li>
-          <li class="box2 relative">
+          <li class="col-start-1 col-end-2 row-start-2 row-end-3 relative">
             <img class="w-[270px] h-[250px] rounded-[20px] mt-[13px]" src="./media/card2.jpg" alt="Building">
             <span class="absolute top-6 left-6 flex items-center justify-center w-[42px] h-6 bg-white text-[14px] leading-[14px] rounded-xl">3.5</span>
             <div class="absolute bottom-6 left-6 flex flex-col gap-[10px]">
@@ -232,7 +232,7 @@
               <span class="text-white text-[14px] leading-[14px]">Worefall</span>
             </div>
           </li>
-          <li class="box3 relative">
+          <li class="col-start-2 col-end-3 row-start-1 row-end-3 relative">
             <img class="w-[370px] h-[526px] rounded-[20px]" src="./media/card3.jpg" alt="Corner of the street">
             <span class="absolute top-6 left-6 flex items-center justify-center w-[42px] h-6 bg-black text-white text-[14px] leading-[14px] rounded-xl">3.5</span>
             <div class="absolute bottom-6 left-6 flex flex-col gap-[10px]">
@@ -240,7 +240,7 @@
               <span class="text-white text-[14px] leading-[14px]">Worefall</span>
             </div>
           </li>
-          <li class="box4 relative">
+          <li class="col-start-3 col-end-5 row-start-1 row-end-2 relative">
             <img class="w-[470px] h-[250px] rounded-[20px]" src="./media/card4.jpg" alt="Bridge">
             <span class="absolute top-6 left-6 flex items-center justify-center w-[42px] h-6 bg-black text-white text-[14px] leading-[14px] rounded-xl">3.5</span>
             <div class="absolute bottom-6 left-6 flex flex-col gap-[10px]">
@@ -248,7 +248,7 @@
               <span class="text-white text-[14px] leading-[14px]">Worefall</span>
             </div>
           </li>
-          <li class="box5 relative">
+          <li class="col-start-3 col-end-4 row-start-2 row-end-3 relative">
             <img class="w-[170px] h-[263px] rounded-[20px]" src="./media/card5.jpg" alt="Cathedral">
             <span class="absolute top-6 left-6 flex items-center justify-center w-[42px] h-6 bg-black text-white text-[14px] leading-[14px] rounded-xl">3.5</span>
             <div class="absolute bottom-6 left-6 flex flex-col gap-[10px]">
@@ -256,7 +256,7 @@
               <span class="text-white text-[14px] leading-[14px]">Worefall</span>
             </div>
           </li>
-          <li class="box6 relative">
+          <li class="col-start-4 col-end-5 row-start-2 row-end-3 relative">
             <img class="w-[270px] h-[263px] rounded-[20px]" src="./media/card6.jpg" alt="Big Ben">
             <span class="absolute top-6 left-6 flex items-center justify-center w-[42px] h-6 bg-black text-white text-[14px] leading-[14px] rounded-xl">3.5</span>
             <div class="absolute bottom-6 left-6 flex flex-col gap-[10px]">
@@ -286,13 +286,13 @@
                 <p class="mt-2 text-[12px] leading-none text-gray-light">Enterpreneur</p>
               </div>
               <div class="flex gap-4">
-                <button class="w-[54px] h-[54px] border border-gray-dark rounded-full hover:bg-gray-dark flex justify-center items-center hover:fill-transparent">
-                  <svg class="w-[6px] h-[12px] fill-gray-dark ">
+                <button class="w-[54px] h-[54px] border border-gray-dark rounded-full hover:bg-gray-dark flex justify-center items-center">
+                  <svg class="arrow-icon w-[6px] h-[12px] stroke-gray-dark">
                     <use href="./media/symbol-defs.svg#icon-arrow_left" />
                   </svg>
                 </button>
                 <button class="w-[54px] h-[54px] border border-gray-dark rounded-full hover:bg-gray-dark flex justify-center items-center">
-                  <svg class="w-[6px] h-[12px] fill-gray-dark hover:fill-transparent">
+                  <svg class="arrow-icon w-[6px] h-[12px] stroke-gray-dark">
                     <use href="./media/symbol-defs.svg#icon-arrow_right" />
                   </svg>
                 </button>
@@ -305,13 +305,13 @@
     <!-- Subscribe -->
     <section class="section">
       <div class="app-container">
-        <div class="bg-orange-pale w-full flex flex-col items-center py-[75px] rounded-[30px]">
+        <div class="subscribe-bg w-full flex flex-col items-center py-[75px] rounded-[30px]">
           <h2 class="text-black font-semibold text-[40px] leading-none">Sign up to our newsletter</h2>
           <p class="leading-[26px] text-gray-light inline-block max-w-[415px] text-center mt-4">Receive latest news, update, and many other things every week.</p>
           <form class="mt-10 pl-[26px] pr-3 py-[10px] h-[60px] w-[450px] flex items-center justify-between bg-white rounded-xl">
-            <input class=" " type="text" placeholder="Enter Your email address">
-            <button class="bg-orange w-10 h-10 rounded-xl" type="submit">
-              <svg class="w-4 h-[17px] inline-block">
+            <input type="text" placeholder="Enter Your email address">
+            <button class="bg-orange w-10 h-10 rounded-xl flex items-center justify-center" type="submit">
+              <svg class="w-4 h-[17px] inline-block fill-white">
                 <use href="./media/symbol-defs.svg#icon-plane" />
               </svg>
             </button>
@@ -320,9 +320,104 @@
       </div>
     </section>
   </main>
-  <footer>
-    <div class="app-container">
-      Footer
+  <footer class="py-20">
+    <div class="app-container space-x-[275px]">
+      <div>
+        <a class="mr-[72px]" href="/">
+          <svg class="w-[98px] h-[35px] fill-black">
+            <use href="./media/symbol-defs.svg#icon-logo" />
+          </svg>
+        </a>
+        <p class="text-gray-light leading-[1.62] mt-5">Enjoy the touring <br> with Salty</p>
+        <ul class="flex gap-[14px] mt-10">
+          <li>
+            <a href="" class="inline-flex items-center justify-center w-8 h-8 border border-gray-light hover:border-orange  rounded-[50%]">
+              <svg class="soc-icon w-[6px] h-3 fill-gray-light">
+                <use href="./media/symbol-defs.svg#icon-facebook" />
+              </svg>
+            </a>
+          </li>
+          <li>
+            <a href="" class="inline-flex items-center justify-center w-8 h-8 border border-gray-light hover:border-orange rounded-[50%]">
+              <svg class="soc-icon w-3 h-3  fill-gray-light stroke-white">
+                <use href="./media/symbol-defs.svg#icon-insta" />
+              </svg>
+            </a>
+          </li>
+          <li>
+            <a href="" class="inline-flex items-center justify-center w-8 h-8 border border-gray-light hover:border-orange rounded-[50%]">
+              <svg class="soc-icon w-[15px] h-3  fill-gray-light">
+                <use href="./media/symbol-defs.svg#icon-twitter" />
+              </svg>
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      <ul class="flex gap-[113px]">
+        <li class="space-y-[22px]">
+          <h3 class="text-[18px] text-black leading-none font-medium ">Resources</h3>
+          <ul>
+            <li class="text-gray-for-footer text-[14px] leading-[2.43]">
+              <a href="/">Download</a>
+            </li>
+            <li class="text-gray-for-footer text-[14px] leading-[2.43]">
+              <a href="/">Help Center</a>
+            </li>
+            <li class="text-gray-for-footer text-[14px] leading-[2.43]">
+              <a href="/">Guide Book</a>
+            </li>
+            <li class="text-gray-for-footer text-[14px] leading-[2.43]">
+              <a href="/">App Directory</a>
+            </li>
+          </ul>
+        </li>
+        <li class="space-y-[22px]">
+          <h3 class="text-[18px] text-black leading-none font-medium ">Travellers</h3>
+          <ul>
+            <li class="text-gray-for-footer text-[14px] leading-[2.43]">
+              <a href="/">Why Travellers</a>
+            </li>
+            <li class="text-gray-for-footer text-[14px] leading-[2.43]">
+              <a href="/">Enterprice</a>
+            </li>
+            <li class="text-gray-for-footer text-[14px] leading-[2.43]">
+              <a href="/">Customer Stories</a>
+            </li>
+            <li class="text-gray-for-footer text-[14px] leading-[2.43]">
+              <a href="/">Instagram post</a>
+            </li>
+          </ul>
+        </li>
+        <li class="space-y-[22px]">
+          <h3 class="text-[18px] text-black leading-none font-medium ">Company</h3>
+          <ul>
+            <li class="text-gray-for-footer text-[14px] leading-[2.43]">
+              <a href="/">Travelling</a>
+            </li>
+            <li class="text-gray-for-footer text-[14px] leading-[2.43]">
+              <a href="/">About Locato</a>
+            </li>
+            <li class="text-gray-for-footer text-[14px] leading-[2.43]">
+              <a href="/">Success</a>
+            </li>
+            <li class="text-gray-for-footer text-[14px] leading-[2.43]">
+              <a href="/">Information</a>
+            </li>
+          </ul>
+        </li>
+        <li class="space-y-[22px]">
+          <h3 class="text-[18px] text-black leading-none font-medium ">Get App</h3>
+          <ul>
+            <li class="text-gray-for-footer text-[14px] leading-[2.43]">
+              <a href="/">App Store</a>
+            </li>
+            <li class="text-gray-for-footer text-[14px] leading-[2.43]">
+              <a href="/">Google Play Store</a>
+            </li>
+          </ul>
+        </li>
+      </ul>
     </div>
   </footer>
 </template>
@@ -348,13 +443,20 @@
   background-color: #fff;
 }
 
-.location-date-input input {
+/* .location-date-input input {
   border-radius: 5px;
   border: 1px solid #ccc;
   font-size: 16px;
+} */
+
+button:hover {
+  .arrow-icon {
+    stroke: white;
+    fill: transparent
+  }
 }
 
-.box1 {
+/* .box1 {
   grid-column: 1 / 2;
   grid-row: 1 / 2;
 }
@@ -382,5 +484,16 @@
 .box6 {
   grid-column: 4 / 5;
   grid-row: 2 / 3;
+} */
+
+.subscribe-bg {
+  background-color: #FFD482;
+  background-image: url('./media/waves.png');
+}
+
+a:hover {
+  .soc-icon {
+    fill: #F66F4D;
+  }
 }
 </style>
