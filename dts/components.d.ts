@@ -7,20 +7,16 @@ export {}
 
 declare module '@vue/runtime-core' {
   export interface GlobalComponents {
-    Compute: typeof import('./../src/components/Compute.vue')['default']
-    ElButton: typeof import('element-plus/es')['ElButton']
-    ElCard: typeof import('element-plus/es')['ElCard']
-    ElConfigProvider: typeof import('element-plus/es')['ElConfigProvider']
-    ElForm: typeof import('element-plus/es')['ElForm']
-    ElFormItem: typeof import('element-plus/es')['ElFormItem']
-    ElInput: typeof import('element-plus/es')['ElInput']
-    ElOption: typeof import('element-plus/es')['ElOption']
-    Portal: typeof import('./../src/plugins/portal/Portal.vue')['default']
-    PortalTarget: typeof import('./../src/plugins/portal/PortalTarget.vue')['default']
-    RouterLink: typeof import('vue-router')['RouterLink']
-    RouterView: typeof import('vue-router')['RouterView']
-  }
-  export interface ComponentCustomProperties {
-    vLoading: typeof import('element-plus/es')['ElLoadingDirective']
+    ArrowsBtns: typeof import('./../src/components/ArrowsBtns.vue')['default']
+    CategoriesSection: typeof import('./../src/components/CategoriesSection.vue')['default']
+    ExperienceSection: typeof import('./../src/components/ExperienceSection.vue')['default']
+    Footer: typeof import('./../src/components/Footer.vue')['default']
+    FooterPart: typeof import('./../src/components/FooterPart.vue')['default']
+    HeaderPart: typeof import('./../src/components/HeaderPart.vue')['default']
+    HeroSection: typeof import('./../src/components/HeroSection.vue')['default']
+    PopularDestinationsSection: typeof import('./../src/components/PopularDestinationsSection.vue')['default']
+    ReviewsSection: typeof import('./../src/components/ReviewsSection.vue')['default']
+    SubscribeSection: typeof import('./../src/components/SubscribeSection.vue')['default']
+    TopDestinationsSection: typeof import('./../src/components/TopDestinationsSection.vue')['default']
   }
 }
