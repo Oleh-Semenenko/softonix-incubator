@@ -1,8 +1,25 @@
 <template>
   <div class="max-w-[1440px] p-6">
-    <h3 class="font-medium m-0">Contact list</h3>
+    <h3 class="font-medium m-0 inline-block">Contact list</h3>
+    <button
+      type="button"
+      class="ml-5 hover:text-blue-500"
+      @click="() => isEmptyForm = true"
+    >
+      Add contact
+    </button>
 
     <div class="contact-list grid-cols-[repeat(auto-fill,_minmax(320px,_1fr))] grid gap-5 my-5">
+      <ContactItem
+        v-if="isEmptyForm"
+        :is-new-card="true"
+        :contact="{id: 0,
+                   name: '',
+                   description: '',
+                   image: ''}"
+        @create="createNewCard"
+        @cancel="isEmptyForm = false"
+      />
       <ContactItem
         v-for="(contact, index) in contacts"
         :key="contact.id"
@@ -18,6 +35,7 @@
 import { ref } from 'vue'
 import type { IContact } from '@/types'
 import ContactItem from '@/components/ContactItem.vue'
+// import NewEmptyCard from '@/components/NewEmptyCard.vue'
 
 const contacts = ref<IContact[]>([
   {
@@ -46,5 +64,12 @@ function deleteContact (index: number) {
 
 function onContactSave (contact: IContact, index: number) {
   contacts.value[index] = { ...contact }
+}
+
+const isEmptyForm = ref(false)
+
+function createNewCard (newData: IContact) {
+  contacts.value.unshift(newData)
+  isEmptyForm.value = false
 }
 </script>
