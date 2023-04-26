@@ -1,5 +1,5 @@
 import { defineStore } from 'pinia'
-import { ref } from 'vue'
+import { ref, computed } from 'vue'
 import type { IContact } from '@/types'
 
 export const useContactsStore = defineStore('contactsStore', () => {
@@ -27,7 +27,11 @@ export const useContactsStore = defineStore('contactsStore', () => {
     }
   ])
 
-  const roles = ref<string[]>(['Developer', 'Manager', 'QA'])
+  const roles = ref(['Developer', 'Manager', 'QA'])
+  const sortingWays = ref(['default', 'ascending', 'descending'])
+  const sortMode = ref('')
+  const chosenRole = ref('')
+  const searchValue = ref('')
 
   function addContact (contact: IContact) {
     contacts.value.push(contact)
@@ -43,11 +47,38 @@ export const useContactsStore = defineStore('contactsStore', () => {
     contacts.value.splice(currentIndex, 1)
   }
 
+  function normalizedQuery (query: string) {
+    return query.trim().toLowerCase()
+  }
+
+  const filteredContacts = computed(() => {
+    const query = normalizedQuery(searchValue.value)
+    const norm = normalizedQuery(chosenRole.value)
+
+    return contacts.value
+      .filter(c => c.name.toLowerCase().includes(query) || c.description.toLowerCase().includes(query))
+      .filter(c => c.role?.toLowerCase().includes(norm))
+      .sort((a, b) => {
+        if (sortMode.value === 'ascending') {
+          return a.name.localeCompare(b.name)
+        } else if (sortMode.value === 'descending') {
+          return b.name.localeCompare(a.name)
+        } else {
+          return 0
+        }
+      })
+  })
+
   return {
     contacts,
     roles,
+    sortingWays,
+    searchValue,
+    sortMode,
+    chosenRole,
     addContact,
     deleteContact,
-    updateContact
+    updateContact,
+    filteredContacts
   }
 })

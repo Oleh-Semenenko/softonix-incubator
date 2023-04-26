@@ -8,9 +8,8 @@
     <option
       value=""
       disabled
-      class="text-gray-light"
     >
-      Select a role
+      {{ defaultOption }}
     </option>
     <option
       v-for="option in options"
@@ -28,6 +27,7 @@ defineProps<{
   name: string
   options: string[]
   modelValue: string
+  defaultOption: string
 }>()
 
 defineEmits(['update:modelValue'])

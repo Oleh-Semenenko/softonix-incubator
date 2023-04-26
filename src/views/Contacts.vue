@@ -19,14 +19,23 @@
     <AppSelect
       v-model="chosenRole"
       :options="roles"
+      defaultOption="Select a role"
       name="roles"
+      class="w-[200px]"
+    />
+
+    <AppSelect
+      v-model="sortMode"
+      :options="sortingWays"
+      defaultOption="Sort by"
+      name="sorting"
       class="w-[200px]"
     />
   </div>
 
   <div class="grid-cols-[repeat(auto-fill,_minmax(320px,_1fr))] grid gap-5 my-5">
     <ContactItem
-      v-for="contact in filteredContactsByRole"
+      v-for="contact in filteredContacts"
       :key="contact.id"
       class="cursor-pointer"
       :contact="contact"
@@ -37,7 +46,6 @@
   </div>
 </template>
 <script lang="ts" setup>
-import { ref, computed } from 'vue'
 import { useRouter } from 'vue-router'
 import { storeToRefs } from 'pinia'
 import { useContactsStore } from '@/store'
@@ -51,7 +59,7 @@ import IconPlus from '@/components/icons/IconPlus.vue'
 const router = useRouter()
 
 const contactsStore = useContactsStore()
-const { contacts, roles } = storeToRefs(contactsStore)
+const { roles, sortingWays, sortMode, filteredContacts, chosenRole, searchValue } = storeToRefs(contactsStore)
 const { updateContact, deleteContact } = contactsStore
 
 function createNewContact () {
@@ -62,8 +70,12 @@ function editContact (contactId: number) {
   router.push({ name: 'upsertContact', params: { contactId } })
 }
 
-const searchValue = ref('')
-const chosenRole = ref('')
+//   return contacts.value.filter(c => c.name.toLowerCase().includes(query) || c.description.toLowerCase().includes(query))
+// if (!query) {
+//   return contacts.value
+// }
+
+// return contacts.value.filter(c => c.role?.toLowerCase().includes(roleQuery))
 
 // const filteredContacts = computed(() => {
 //   const query = searchValue.value.trim().toLowerCase()
@@ -74,12 +86,4 @@ const chosenRole = ref('')
 //   return contacts.value.filter(c => c.name.toLowerCase().includes(query) || c.description.toLowerCase().includes(query))
 // })
 
-const filteredContactsByRole = computed(() => {
-  const query = chosenRole.value.trim().toLowerCase()
-  // if (!query) {
-  //   return contacts.value
-  // }
-  console.log(query)
-  return contacts.value.filter(c => c.role?.toLowerCase().includes(query))
-})
 </script>
