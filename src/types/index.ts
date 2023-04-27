@@ -5,3 +5,9 @@ export interface IContact {
   image?: string
   role?: string
 }
+
+export interface IFilters {
+  sortMode: string
+  chosenRole: string
+  searchValue: string
+}

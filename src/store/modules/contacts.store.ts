@@ -1,6 +1,6 @@
 import { defineStore } from 'pinia'
-import { ref, computed } from 'vue'
-import type { IContact } from '@/types'
+import { ref } from 'vue'
+import type { IContact, IFilters } from '@/types'
 
 export const useContactsStore = defineStore('contactsStore', () => {
   const contacts = ref<IContact[]>([
@@ -29,9 +29,28 @@ export const useContactsStore = defineStore('contactsStore', () => {
 
   const roles = ref(['Developer', 'Manager', 'QA'])
   const sortingWays = ref(['default', 'ascending', 'descending'])
-  const sortMode = ref('')
-  const chosenRole = ref('')
-  const searchValue = ref('')
+
+  function normalizedQuery (query: string) {
+    return query.trim().toLowerCase()
+  }
+
+  function filterContacts (params: IFilters) {
+    const query = normalizedQuery(params.searchValue)
+    const normalizedRole = normalizedQuery(params.chosenRole)
+
+    return contacts.value
+      .filter(c => c.name.toLowerCase().includes(query) || c.description.toLowerCase().includes(query))
+      .filter(c => c.role?.toLowerCase().includes(normalizedRole))
+      .sort((a, b) => {
+        if (params.sortMode === 'ascending') {
+          return a.name.localeCompare(b.name)
+        } else if (params.sortMode === 'descending') {
+          return b.name.localeCompare(a.name)
+        } else {
+          return 0
+        }
+      })
+  }
 
   function addContact (contact: IContact) {
     contacts.value.push(contact)
@@ -47,38 +66,13 @@ export const useContactsStore = defineStore('contactsStore', () => {
     contacts.value.splice(currentIndex, 1)
   }
 
-  function normalizedQuery (query: string) {
-    return query.trim().toLowerCase()
-  }
-
-  const filteredContacts = computed(() => {
-    const query = normalizedQuery(searchValue.value)
-    const norm = normalizedQuery(chosenRole.value)
-
-    return contacts.value
-      .filter(c => c.name.toLowerCase().includes(query) || c.description.toLowerCase().includes(query))
-      .filter(c => c.role?.toLowerCase().includes(norm))
-      .sort((a, b) => {
-        if (sortMode.value === 'ascending') {
-          return a.name.localeCompare(b.name)
-        } else if (sortMode.value === 'descending') {
-          return b.name.localeCompare(a.name)
-        } else {
-          return 0
-        }
-      })
-  })
-
   return {
     contacts,
     roles,
     sortingWays,
-    searchValue,
-    sortMode,
-    chosenRole,
+    filterContacts,
     addContact,
     deleteContact,
-    updateContact,
-    filteredContacts
+    updateContact
   }
 })
