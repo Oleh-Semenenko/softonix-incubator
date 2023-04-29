@@ -23,6 +23,7 @@
   </div>
 </template>
 <script lang="ts" setup>
+import ContactItem from '@/views/contacts/components/ContactItem.vue'
 const router = useRouter()
 const { $routeNames } = useGlobalProperties()
 
