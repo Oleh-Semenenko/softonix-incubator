@@ -3,9 +3,10 @@
     <li
       v-for="job in firstFiveJobs"
       :key="job.id"
-      class="ml-5 truncate"
+      class="truncate flex items-center text-blue-300 text-sm hover:text-blue-600
+      before:content-[''] before:block before:w-5 before:h-[1px] before:bg-gray"
     >
-      <a href="">- {{ job.title }}</a>
+      <a href="">{{ job.title }}</a>
     </li>
   </ol>
   <button

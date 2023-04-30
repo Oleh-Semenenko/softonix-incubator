@@ -1,11 +1,15 @@
 <template>
   <aside class="border border-gray rounded w-1/2 p-2">
-    <h2 class="uppercase">Job Openings</h2>
-    <button class="">?</button>
-    <AppButton>
-      Arrow
-    </AppButton>
-    <AppSelect />
+    <div class="flex items-center gap-2 mb-2">
+      <h2 class="uppercase">Job Openings</h2>
+      <button class="w-4 h-4 bg-blue-500 rounded-full flex items-center justify-center text-white text-xs">i</button>
+      <AppButton class="ml-auto">
+        <template #icon>
+          <IconRightArrow class="w-3 h-3 fill-white ml-2" />
+        </template>
+      </AppButton>
+    </div>
+    <AppSelect :department-list="data" />
     <DepartmentList :department-list="data" />
   </aside>
 </template>
