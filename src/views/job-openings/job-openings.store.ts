@@ -1,12 +1,12 @@
-import type { IDepartment } from '@/_homework/departments'
-import type { IJobOpening } from '@/_homework/job-openings'
+import type { IDepartment, IJobOpening } from '@/views/job-openings/job-openings'
 import type { Ref } from 'vue'
 import { jobOpeningsService } from './job-openings.service'
 
 export const useJobOpeningsStore = defineStore('jobOpeningsStore', () => {
   const jobOpenings = ref<IJobOpening[]>()
   const departments = ref<IDepartment[]>()
-  const filteredDepartments: Ref<string[]> = ref([])
+  const selectedDepartments: Ref<string[]> = ref([])
+  const openDetails = ref(false)
 
   const isLoading = ref(false)
 
@@ -34,8 +34,9 @@ export const useJobOpeningsStore = defineStore('jobOpeningsStore', () => {
   return {
     departments,
     jobOpenings,
-    filteredDepartments,
+    selectedDepartments,
     isLoading,
+    openDetails,
     fetchData
   }
 })

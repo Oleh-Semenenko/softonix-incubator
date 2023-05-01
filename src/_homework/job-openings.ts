@@ -1,10 +1,4 @@
-export interface IJobOpening {
-  title: string
-  id: string
-  departments: string[]
-  isClosed: boolean
-  url: string
-}
+import type { IJobOpening } from '@/views/job-openings/job-openings'
 
 export const jobOpenings: IJobOpening[] = [
   {

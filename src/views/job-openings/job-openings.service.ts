@@ -1,5 +1,6 @@
-import { departments, type IDepartment } from '@/_homework/departments'
-import { jobOpenings, type IJobOpening } from '@/_homework/job-openings'
+import { departments } from '@/_homework/departments'
+import { jobOpenings } from '@/_homework/job-openings'
+import type { IDepartment, IJobOpening, IPrepairedData, IHashedDepartments } from '@/views/job-openings/job-openings'
 
 class JobOpeningsService {
   async fetchJobOpenings () {
@@ -19,23 +20,16 @@ class JobOpeningsService {
   }
 
   createHashedDepartments (data: IDepartment[] = []) {
-    return data.reduce((acc: any, curr: any) => {
+    return data.reduce((acc: IHashedDepartments, curr: IDepartment) => {
       acc[curr.value] = curr.name
       return acc
     }, {} as any)
   }
 
-  createHashedJobOpenings (data: IJobOpening[] = []) {
-    return data.reduce((acc: any, curr: any) => {
-      acc[curr.id] = curr
-      return acc
-    }, [] as any)
-  }
-
   prepareData (data: IJobOpening[] = [], dep: IDepartment[] = []) {
     const hashedDep = this.createHashedDepartments(dep)
 
-    return data.reduce((acc: any, curr: any) => {
+    return data.reduce((acc: IPrepairedData, curr: IJobOpening) => {
       if (curr.departments.length > 0) {
         curr.departments.forEach((dep: string) => {
           if (hashedDep[dep]) {

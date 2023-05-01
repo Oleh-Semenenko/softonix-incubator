@@ -1,7 +1,4 @@
-export interface IDepartment {
-  name: string
-  value: string
-}
+import type { IDepartment } from '@/views/job-openings/job-openings'
 
 export const departments: IDepartment[] = [
   {

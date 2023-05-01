@@ -1,5 +1,5 @@
 <template>
-  <div class="flex gap-4 pb-4">
+  <div class="flex gap-4 p-4 border-b border-gray">
     <RouterLink
       :to="{name: $routeNames.contacts}"
       class="hover:text-blue-500 "

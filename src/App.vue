@@ -1,6 +1,6 @@
 <template>
-  <div class="max-w-[1440px] mx-auto p-6">
-    <HeaderLayout />
+  <HeaderLayout />
+  <div class="max-w-[1440px] mx-auto p-3">
     <RouterView />
   </div>
 </template>

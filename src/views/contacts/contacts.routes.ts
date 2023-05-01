@@ -1,7 +1,7 @@
 import type { RouteRecordRaw } from 'vue-router'
 
-import Contacts from '@/views/contacts/Contacts.vue'
-import UpsertContact from '@/views/contacts/UpsertContact.vue'
+const Contacts = () => import('@/views/contacts/Contacts.vue')
+const UpsertContact = () => import('@/views/contacts/UpsertContact.vue')
 
 export const contactRouteNames = {
   contacts: 'contacts',
