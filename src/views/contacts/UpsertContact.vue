@@ -1,35 +1,55 @@
 <template>
-  <div class="flex justify-center">
+  <el-container class="justify-center">
     <Card :title="cardTitle" class="w-[350px]">
-      <div class="space-y-4">
-        <AppInput v-model.trim="contactForm.name" placeholder="Name" />
-
-        <AppInput v-model.trim="contactForm.description" placeholder="Description" />
-
-        <AppInput v-model.trim="contactForm.image" placeholder="Image Link" />
-      </div>
+      <el-form
+        class="space-y-4"
+        :model="contactForm"
+      >
+        <el-form-item>
+          <el-input v-model="contactForm.name" placeholder="Name" />
+        </el-form-item>
+        <el-form-item>
+          <el-input v-model="contactForm.description" placeholder="Description" />
+        </el-form-item>
+        <el-form-item>
+          <el-input v-model="contactForm.image" placeholder="Image Link" />
+        </el-form-item>
+      </el-form>
 
       <template #footer>
-        <div class="px-6 pb-6 mt-2 flex gap-3">
-          <AppButton class="flex-auto" @click="$router.back">
+        <el-footer class="pb-6 mt-2 flex justify-between">
+          <el-button
+            :type="$elComponentType.primary"
+            class="flex-auto"
+            @click="$router.back"
+          >
             Cancel
-          </AppButton>
+          </el-button>
 
-          <AppButton v-if="currentContact" class="flex-auto" @click="onDelete">
+          <el-button
+            v-if="currentContact"
+            :type="$elComponentType.primary"
+            class="flex-auto"
+            @click="onDelete"
+          >
             Delete
-          </AppButton>
+          </el-button>
 
-          <AppButton class="flex-auto" :disabled="!isFormValid" @click="onSave">
+          <el-button
+            :type="$elComponentType.primary"
+            :disabled="!isFormValid"
+            class="flex-auto"
+            @click="onSave"
+          >
             <template #icon>
               <IconPlus class="w-5 h-5" />
             </template>
-
             Save
-          </AppButton>
-        </div>
+          </el-button>
+        </el-footer>
       </template>
     </Card>
-  </div>
+  </el-container>
 </template>
 
 <script lang="ts" setup>

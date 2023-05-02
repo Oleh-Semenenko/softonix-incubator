@@ -1,11 +1,11 @@
 <template>
-  <div class="rounded-lg bg-white shadow relative flex flex-col">
+  <el-card>
     <slot name="title">
-      <h3 v-if="title" class="font-semibold px-6 pt-6 pb-4">{{ title }}</h3>
+      <h3 v-if="title" class="font-semibold pb-4">{{ title }}</h3>
     </slot>
 
     <div
-      class="flex-grow px-6"
+      class="flex-grow"
       :class="[
         { 'pt-6': !title && !$slots.title},
         !!$slots.footer ? 'pb-2' : 'pb-6'
@@ -17,7 +17,7 @@
     <div class="shrink-0">
       <slot name="footer" />
     </div>
-  </div>
+  </el-card>
 </template>
 
 <script lang="ts" setup>

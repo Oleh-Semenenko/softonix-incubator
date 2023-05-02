@@ -1,5 +1,5 @@
 <template>
-  <div class="flex items-center gap-4">
+  <el-header class="flex items-center gap-4">
     <h3 class="font-medium m-0">Contact list</h3>
 
     <el-button :type="$elComponentType.primary" @click="createNewContact">
@@ -16,9 +16,9 @@
     >
       Logout
     </el-button>
-  </div>
+  </el-header>
 
-  <div class="grid-cols-[repeat(auto-fill,_minmax(320px,_1fr))] grid gap-5 my-5">
+  <el-main class="grid-cols-[repeat(auto-fill,_minmax(320px,_1fr))] grid gap-5 my-5">
     <ContactItem
       v-for="contact in contacts"
       :key="contact.id"
@@ -28,7 +28,7 @@
       @delete="deleteContact"
       @save="updateContact"
     />
-  </div>
+  </el-main>
 </template>
 <script lang="ts" setup>
 const router = useRouter()

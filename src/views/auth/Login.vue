@@ -20,9 +20,9 @@
           <el-input v-model="formModel.password" type="password" />
         </el-form-item>
 
-        <el-button native-type="submit" :type="$elComponentType.primary">
+        <AppButton native-type="submit" :type="$elComponentType.primary">
           Login
-        </el-button>
+        </AppButton>
       </el-form>
     </el-card>
   </div>
@@ -45,7 +45,7 @@ const formRules = useElFormRules({
 })
 
 function submit () {
-  formRef.value?.validate(isValid => {
+  formRef.value?.validate((isValid: boolean) => {
     if (isValid) {
       router.push({ name: $routeNames.contacts })
     }
