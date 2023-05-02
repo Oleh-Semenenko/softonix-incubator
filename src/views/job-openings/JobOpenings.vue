@@ -19,10 +19,6 @@
 </template>
 
 <script lang="ts" setup>
-import JobOpeningsSelect from '@/views/job-openings/components/JobOpeningsSelect.vue'
-import DepartmentList from '@/views/job-openings/components/DepartmentList.vue'
-import VacancyDetails from '@/views/job-openings/components/VacancyDetails.vue'
-
 const jobOpeningsStore = useJobOpeningsStore()
 const { departments, jobOpenings, openDetails } = storeToRefs(jobOpeningsStore)
 
