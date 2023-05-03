@@ -1,16 +1,37 @@
 <template>
-  <Card class="box-card">
-    <div class="flex">
+  <el-card :body-style="{padding: 0, height: '100%'}">
+    <div class="flex px-6 pt-5">
       <div class="flex-grow text-sm truncate" @click.stop>
-        <template v-if="editMode">
-          <el-input
-            ref="inputRef"
-            v-model="localContact.name"
-            type="text"
-            class="block font-medium w-full"
-          />
-          <el-input v-model="localContact.description" type="text" class="block mt-1 text-gray w-full" />
-        </template>
+        <el-form
+          v-if="editMode"
+          ref="formRef"
+          :rules="formRules"
+          :model="localContact"
+        >
+          <el-form-item
+            :style="{marginBottom: '16px'}"
+            prop="name"
+          >
+            <el-input
+              v-model="localContact.name"
+              type="text"
+              placeholder="Enter name"
+              :size="$elComponentSize.small"
+            />
+          </el-form-item>
+
+          <el-form-item
+            :style="{marginBottom: '16px'}"
+            prop="description"
+          >
+            <el-input
+              v-model="localContact.description"
+              type="text"
+              placeholder="Enter description"
+              :size="$elComponentSize.small"
+            />
+          </el-form-item>
+        </el-form>
 
         <template v-else>
           <p class="font-medium cursor-text">{{ contact.name }}</p>
@@ -40,7 +61,7 @@
       </div>
     </div>
 
-    <div class="flex justify-end mt-2">
+    <div class="flex justify-end mt-2 px-6 pb-5">
       <template v-if="editMode">
         <el-button
           text
@@ -56,6 +77,7 @@
           text
           :type="$elComponentType.primary"
           :size="$elComponentSize.small"
+          :disabled="!isFormValid"
           class="text-blue-500 font-medium text-xs cursor-pointer hover:underline"
           @click.stop="onSave"
         >
@@ -69,7 +91,7 @@
           :type="$elComponentType.primary"
           :size="$elComponentSize.small"
           class="hover:underline"
-          @click.stop="triggerEditMode"
+          @click.stop="editMode = true"
         >
           Edit
         </el-button>
@@ -86,22 +108,20 @@
       </template>
     </div>
 
-    <template #footer>
-      <div class="flex text-sm font-medium text-gray-dark border-t border-gray-ultra-light" @click.stop>
-        <div class="flex items-center justify-center flex-1 py-4 cursor-pointer hover:text-gray">
-          <IconEnvelope />
-          <span class="ml-3">Email</span>
-        </div>
-        <div
-          class="flex items-center justify-center flex-1 py-4 border-l
-            border-gray-ultra-light cursor-pointer hover:text-gray"
-        >
-          <IconPhone />
-          <span class="ml-3">Call</span>
-        </div>
+    <div class="flex text-sm font-medium text-gray-dark border-t border-gray-ultra-light" @click.stop>
+      <div class="flex items-center justify-center flex-1 py-4 cursor-pointer hover:text-gray">
+        <IconEnvelope />
+        <span class="ml-3">Email</span>
       </div>
-    </template>
-  </Card>
+      <div
+        class="flex items-center justify-center flex-1 py-4 border-l
+            border-gray-ultra-light cursor-pointer hover:text-gray"
+      >
+        <IconPhone />
+        <span class="ml-3">Call</span>
+      </div>
+    </div>
+  </el-card>
 </template>
 
 <script lang="ts" setup>
@@ -111,12 +131,15 @@ const props = defineProps<{
 
 const emit = defineEmits(['delete', 'save'])
 
-const inputRef = ref<HTMLInputElement>()
+const localContact = useElFormModel({
+  ...props.contact
+})
+const editMode = ref(false)
+const formRef = useElFormRef()
 
-const localContact = ref<Omit<IContact, 'id'>>({
-  name: '',
-  description: '',
-  image: ''
+const formRules = useElFormRules({
+  name: [useRequiredRule()],
+  description: [useRequiredRule()]
 })
 
 const nameAbbrv = computed(() => {
@@ -128,18 +151,18 @@ const nameAbbrv = computed(() => {
   }, '')
 })
 
-const editMode = ref(false)
-
-async function triggerEditMode () {
-  editMode.value = true
-  localContact.value = { ...props.contact }
-  await nextTick()
-  inputRef.value?.focus()
-}
+const isFormValid = computed(() => {
+  const { id, image, ...contact } = localContact
+  return Object.values(contact).every(c => !!c)
+})
 
 function onSave () {
-  emit('save', localContact.value)
-  editMode.value = false
+  formRef.value?.validate((isValid: boolean) => {
+    if (isValid) {
+      emit('save', localContact)
+      editMode.value = false
+    }
+  })
 }
 
 const imageHasError = ref(false)

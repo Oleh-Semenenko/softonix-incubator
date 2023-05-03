@@ -18,7 +18,30 @@
     </el-button>
   </el-header>
 
-  <el-main class="grid-cols-[repeat(auto-fill,_minmax(320px,_1fr))] grid gap-5 my-5">
+  <div>
+    <el-tabs v-model="activeName" class="demo-tabs" @tab-click="handleClick">
+      <el-tab-pane label="Card view" name="card">
+        <el-main class="grid-cols-[repeat(auto-fill,_minmax(320px,_1fr))] grid gap-5 my-5">
+          <ContactItem
+            v-for="contact in contacts"
+            :key="contact.id"
+            :mode="activeName"
+            class="cursor-pointer"
+            :contact="contact"
+            @click="editContact(contact.id)"
+            @delete="deleteContact"
+            @save="updateContact"
+          />
+        </el-main>
+      </el-tab-pane>
+
+      <el-tab-pane label="Table view" name="table">
+        <ContactsTable />
+      </el-tab-pane>
+    </el-tabs>
+  </div>
+
+  <!-- <el-main class="grid-cols-[repeat(auto-fill,_minmax(320px,_1fr))] grid gap-5 my-5">
     <ContactItem
       v-for="contact in contacts"
       :key="contact.id"
@@ -28,9 +51,12 @@
       @delete="deleteContact"
       @save="updateContact"
     />
-  </el-main>
+  </el-main> -->
 </template>
 <script lang="ts" setup>
+import type { TabsPaneContext } from 'element-plus'
+
+const activeName = ref('card')
 const router = useRouter()
 const { $routeNames } = useGlobalProperties()
 
@@ -45,4 +71,17 @@ function createNewContact () {
 function editContact (contactId: number) {
   router.push({ name: $routeNames.upsertContact, params: { contactId } })
 }
+
+const handleClick = (tab: TabsPaneContext, event: Event) => {
+  console.log(tab, event)
+}
 </script>
+
+<style>
+.demo-tabs > .el-tabs__content {
+  padding: 32px;
+  color: #6b778c;
+  font-size: 32px;
+  font-weight: 600;
+}
+</style>

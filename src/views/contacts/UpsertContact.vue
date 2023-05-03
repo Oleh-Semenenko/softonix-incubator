@@ -2,16 +2,18 @@
   <el-container class="justify-center">
     <Card :title="cardTitle" class="w-[350px]">
       <el-form
+        ref="formRef"
         class="space-y-4"
         :model="contactForm"
+        :rules="formRules"
       >
-        <el-form-item>
+        <el-form-item prop="name">
           <el-input v-model="contactForm.name" placeholder="Name" />
         </el-form-item>
-        <el-form-item>
+        <el-form-item prop="description">
           <el-input v-model="contactForm.description" placeholder="Description" />
         </el-form-item>
-        <el-form-item>
+        <el-form-item prop="image">
           <el-input v-model="contactForm.image" placeholder="Image Link" />
         </el-form-item>
       </el-form>
@@ -68,7 +70,9 @@ const cardTitle = computed(() => {
   return currentContact.value ? 'Edit Contact' : 'New Contact'
 })
 
-const contactForm = reactive<IContact>(currentContact.value
+const formRef = useElFormRef()
+
+const contactForm = useElFormModel(currentContact.value
   ? { ...currentContact.value }
   : {
     id: contacts.value.length + 1,
@@ -82,17 +86,33 @@ const isFormValid = computed(() => {
   return Object.values(contact).every(c => !!c)
 })
 
+const formRules = useElFormRules({
+  name: [useRequiredRule()],
+  description: [useRequiredRule()]
+})
+
 function onDelete () {
   deleteContact(currentContact.value as IContact)
   router.replace({ name: $routeNames.contacts })
 }
 
 function onSave () {
-  if (currentContact.value) {
-    updateContact(contactForm)
-  } else {
-    addContact(contactForm)
-  }
-  router.push({ name: $routeNames.contacts })
+  formRef.value?.validate((isValid: boolean) => {
+    if (isValid) {
+      if (currentContact.value) {
+        updateContact(contactForm)
+      } else {
+        addContact(contactForm)
+      }
+      router.push({ name: $routeNames.contacts })
+    }
+  })
+
+  // if (currentContact.value) {
+  //   updateContact(contactForm)
+  // } else {
+  //   addContact(contactForm)
+  // }
+  // router.push({ name: $routeNames.contacts })
 }
 </script>

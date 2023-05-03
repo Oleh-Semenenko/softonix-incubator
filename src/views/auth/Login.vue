@@ -1,5 +1,5 @@
 <template>
-  <div class="max-w-[500px] m-auto">
+  <div class="box-card max-w-[500px] m-auto">
     <el-card>
       <template #header>
         <p class="font-semibold text-xl">Login</p>
@@ -20,9 +20,9 @@
           <el-input v-model="formModel.password" type="password" />
         </el-form-item>
 
-        <AppButton native-type="submit" :type="$elComponentType.primary">
+        <el-button native-type="submit" :type="$elComponentType.primary">
           Login
-        </AppButton>
+        </el-button>
       </el-form>
     </el-card>
   </div>

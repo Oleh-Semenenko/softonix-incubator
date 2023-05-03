@@ -5,8 +5,12 @@
     ),
   ),
   $button-border-radius: (
-    'default': 20px,
-  )
+    'default': 4px,
+  ),
+  $card: (
+    'border-radius': 8px,
+  ),
+
 );
 
 @use "element-plus/theme-chalk/src/base";
@@ -17,3 +21,4 @@
 @use "element-plus/theme-chalk/src/container";
 @use "element-plus/theme-chalk/src/header";
 @use "element-plus/theme-chalk/src/avatar";
+@use "element-plus/theme-chalk/src/table";
