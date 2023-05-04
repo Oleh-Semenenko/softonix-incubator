@@ -107,12 +107,5 @@ function onSave () {
       router.push({ name: $routeNames.contacts })
     }
   })
-
-  // if (currentContact.value) {
-  //   updateContact(contactForm)
-  // } else {
-  //   addContact(contactForm)
-  // }
-  // router.push({ name: $routeNames.contacts })
 }
 </script>

@@ -1,6 +1,6 @@
 <template>
-  <el-card :body-style="{padding: 0, height: '100%'}">
-    <div class="flex px-6 pt-5">
+  <el-card :body-style="{padding: 0, height: '100%', display: 'flex', flexDirection: 'column'}">
+    <div class="flex flex-grow px-6 pt-5">
       <div class="flex-grow text-sm truncate" @click.stop>
         <el-form
           v-if="editMode"
@@ -13,7 +13,9 @@
             prop="name"
           >
             <el-input
+              ref="inputRef"
               v-model="localContact.name"
+              autofocus
               type="text"
               placeholder="Enter name"
               :size="$elComponentSize.small"
@@ -61,7 +63,7 @@
       </div>
     </div>
 
-    <div class="flex justify-end mt-2 px-6 pb-5">
+    <div class="flex flex-grow justify-end mt-2 px-6 pb-5">
       <template v-if="editMode">
         <el-button
           text
@@ -130,6 +132,7 @@ const props = defineProps<{
 }>()
 
 const emit = defineEmits(['delete', 'save'])
+const inputRef = ref<HTMLInputElement>()
 
 const localContact = useElFormModel({
   ...props.contact
@@ -164,6 +167,13 @@ function onSave () {
     }
   })
 }
+
+watch(inputRef, async () => {
+  await nextTick()
+  if (inputRef.value) {
+    inputRef.value.focus()
+  }
+})
 
 const imageHasError = ref(false)
 </script>

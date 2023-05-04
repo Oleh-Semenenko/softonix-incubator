@@ -19,43 +19,39 @@
   </el-header>
 
   <div>
-    <el-tabs v-model="activeName" class="demo-tabs" @tab-click="handleClick">
-      <el-tab-pane label="Card view" name="card">
-        <el-main class="grid-cols-[repeat(auto-fill,_minmax(320px,_1fr))] grid gap-5 my-5">
-          <ContactItem
-            v-for="contact in contacts"
-            :key="contact.id"
-            :mode="activeName"
-            class="cursor-pointer"
-            :contact="contact"
-            @click="editContact(contact.id)"
-            @delete="deleteContact"
-            @save="updateContact"
-          />
-        </el-main>
-      </el-tab-pane>
+    <el-tabs v-model="activeName" class="demo-tabs">
+      <Transition name="fade" mode="out-in">
+        <el-tab-pane label="Card view" name="card">
+          <el-main class="grid-cols-[repeat(auto-fill,_minmax(320px,_1fr))] grid gap-5 my-5">
+            <ContactItem
+              v-for="contact in contacts"
+              :key="contact.id"
+              :mode="activeName"
+              class="cursor-pointer"
+              :contact="contact"
+              @click="editContact(contact.id)"
+              @delete="deleteContact"
+              @save="updateContact"
+            />
+          </el-main>
+        </el-tab-pane>
+      </Transition>
 
-      <el-tab-pane label="Table view" name="table">
-        <ContactsTable />
-      </el-tab-pane>
+      <Transition name="fade" mode="out-in">
+        <el-tab-pane label="Table view" name="table">
+          <el-main class="my-5">
+            <ContactsTable
+              @save="updateContact"
+              @delete="deleteContact"
+              @edit="editContact"
+            />
+          </el-main>
+        </el-tab-pane>
+      </Transition>
     </el-tabs>
   </div>
-
-  <!-- <el-main class="grid-cols-[repeat(auto-fill,_minmax(320px,_1fr))] grid gap-5 my-5">
-    <ContactItem
-      v-for="contact in contacts"
-      :key="contact.id"
-      class="cursor-pointer"
-      :contact="contact"
-      @click="editContact(contact.id)"
-      @delete="deleteContact"
-      @save="updateContact"
-    />
-  </el-main> -->
 </template>
 <script lang="ts" setup>
-import type { TabsPaneContext } from 'element-plus'
-
 const activeName = ref('card')
 const router = useRouter()
 const { $routeNames } = useGlobalProperties()
@@ -71,17 +67,23 @@ function createNewContact () {
 function editContact (contactId: number) {
   router.push({ name: $routeNames.upsertContact, params: { contactId } })
 }
-
-const handleClick = (tab: TabsPaneContext, event: Event) => {
-  console.log(tab, event)
-}
 </script>
 
 <style>
 .demo-tabs > .el-tabs__content {
-  padding: 32px;
+  padding: 16px;
   color: #6b778c;
   font-size: 32px;
   font-weight: 600;
+}
+
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.4s ease 0.1s;
+}
+
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
 }
 </style>

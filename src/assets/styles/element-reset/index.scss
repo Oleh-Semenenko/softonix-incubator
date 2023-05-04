@@ -10,6 +10,9 @@
   $card: (
     'border-radius': 8px,
   ),
+  $header: (
+    'padding': 12px 0,
+  )
 
 );
 
@@ -21,4 +24,5 @@
 @use "element-plus/theme-chalk/src/container";
 @use "element-plus/theme-chalk/src/header";
 @use "element-plus/theme-chalk/src/avatar";
+@use "element-plus/theme-chalk/src/tabs";
 @use "element-plus/theme-chalk/src/table";
