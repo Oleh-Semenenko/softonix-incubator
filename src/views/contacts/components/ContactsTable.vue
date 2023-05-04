@@ -74,7 +74,7 @@
                 :type="$elComponentType.primary"
                 :size="$elComponentSize.small"
                 class="hover:underline"
-                @click.stop="row.editMode = false"
+                @click.stop="onCancel(row)"
               >
                 Cancel
               </el-button>
@@ -97,7 +97,7 @@
                 :type="$elComponentType.primary"
                 :size="$elComponentSize.small"
                 class="hover:underline"
-                @click.stop="row.editMode = true"
+                @click.stop="onEdit(row)"
               >
                 Edit
               </el-button>
@@ -133,9 +133,29 @@ const data = computed(() => {
   })) as ITableContact[]
 })
 
+const localContact = ref<IContact>({
+  id: Date.now(),
+  name: '',
+  description: '',
+  image: ''
+})
+
+function onEdit (contact: ITableContact) {
+  const { editMode, imageHasError, ...data } = contact
+  localContact.value = { ...data }
+  contact.editMode = true
+}
+
+function onCancel (contact: ITableContact) {
+  contact.name = localContact.value.name
+  contact.description = localContact.value.description
+  contact.editMode = false
+}
+
 function onSave (contact: ITableContact) {
   const { editMode, imageHasError, ...data } = contact
-  emit('save', data)
+  localContact.value = { ...data }
+  emit('save', localContact.value)
   contact.editMode = false
 }
 
