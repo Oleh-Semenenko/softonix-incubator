@@ -4,7 +4,7 @@
       :data="data"
       stripe
       style="width: 100%"
-      :row-class-name="rowClassName"
+      :row-class-name="() => 'tr'"
       @row-click="$emit('edit', $event.id)"
     >
       <el-table-column prop="image" label="Image" width="180">
@@ -74,7 +74,7 @@
                 :type="$elComponentType.primary"
                 :size="$elComponentSize.small"
                 class="hover:underline"
-                @click.stop="onCancel(row)"
+                @click.stop="row.editMode = false"
               >
                 Cancel
               </el-button>
@@ -84,6 +84,7 @@
                 :type="$elComponentType.primary"
                 :size="$elComponentSize.small"
                 class="hover:underline"
+                :disabled="!row.name || !row.description"
                 @click.stop="onSave(row)"
               >
                 Save
@@ -96,7 +97,7 @@
                 :type="$elComponentType.primary"
                 :size="$elComponentSize.small"
                 class="hover:underline"
-                @click.stop="onEdit(row)"
+                @click.stop="row.editMode = true"
               >
                 Edit
               </el-button>
@@ -123,7 +124,6 @@ const emit = defineEmits(['delete', 'save', 'edit'])
 
 const contactsStore = useContactsStore()
 const { contacts } = storeToRefs(contactsStore)
-console.log(contacts.value)
 
 const inputRef = ref<HTMLInputElement>()
 
@@ -132,14 +132,6 @@ const data = computed(() => {
     ...contact, editMode: false, imageHasError: false
   })) as ITableContact[]
 })
-
-function onEdit (contact: ITableContact) {
-  contact.editMode = true
-}
-
-function onCancel (contact: ITableContact) {
-  contact.editMode = false
-}
 
 function onSave (contact: ITableContact) {
   const { editMode, imageHasError, ...data } = contact
@@ -162,13 +154,8 @@ function nameAbbrv (contact: ITableContact) {
   }, '')
 }
 
-function rowClassName () {
-  return 'tr'
-}
-
 watch(inputRef, async () => {
   await nextTick()
-  console.log(inputRef)
   if (inputRef.value) {
     inputRef.value.focus()
   }

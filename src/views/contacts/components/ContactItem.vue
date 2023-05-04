@@ -15,7 +15,6 @@
             <el-input
               ref="inputRef"
               v-model="localContact.name"
-              autofocus
               type="text"
               placeholder="Enter name"
               :size="$elComponentSize.small"
