@@ -22,9 +22,8 @@ export const useContactsStore = defineStore('contactsStore', () => {
 
   async function updateContact (contact: IContact) {
     try {
-      await contactsService.updateContact(contact)
-
       const currentIndex = contacts.value.findIndex(c => c.id === contact.id)
+      await contactsService.updateContact(contact)
       contacts.value[currentIndex] = { ...contact }
     } catch (error) {
       console.log(error)

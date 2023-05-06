@@ -4,8 +4,8 @@ class ContactsService {
     return useHttp.get<IContact[]>('rest/v1/contacts')
   }
 
-  createContact (payload: IContactPayload) {
-    return useHttp.post<IContact>('rest/v1/contacts', payload)
+  createContact ({ name, description }: IContact) {
+    return useHttp.post<IContact>('rest/v1/contacts', { name, description })
   }
 
   deleteContact (contactId: number) {
