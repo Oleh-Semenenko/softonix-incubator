@@ -45,6 +45,7 @@ export const useAuthStore = defineStore('authStore', () => {
     refreshToken,
     setToken,
     setRefreshToken,
+    setAccessTokenExpiresAt,
     login,
     register,
     logout

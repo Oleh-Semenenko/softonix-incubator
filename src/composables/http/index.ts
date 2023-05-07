@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { routeNames, router } from '@/router'
+// import { routeNames, router } from '@/router'
 
 const instance = axios.create({
   baseURL: import.meta.env.VITE_API_URL,
@@ -9,100 +9,48 @@ const instance = axios.create({
 })
 
 instance.interceptors.request.use(
-  (config) => {
-    const { accessToken, accessTokenExpiresAt } =
-    useAuthStore()
-
-    if (accessToken && accessTokenExpiresAt && Date.now() < parseInt(accessTokenExpiresAt)) {
-      config.headers = {
-        ...config.headers,
-        authorization: `Bearer ${accessToken}`
-      }
-      return config
-    }
-  },
-  (error) => {
-    return Promise.reject(error)
-  }
-)
-
-instance.interceptors.request.use(
-  async (config) => {
-    const { accessToken, refreshToken, setRefreshToken, setToken, logout } = useAuthStore()
-
-    if (!accessToken) {
-      try {
-        if (!refreshToken) {
-          throw new Error('There is now refresh token!')
-        }
-
-        const res = await authService.refreshToken(refreshToken)
-
-        setRefreshToken(res.refresh_token)
-        setToken(res.access_token)
-      } catch (err) {
-        logout()
-      }
-      return config
-    } else {
-      config.headers = {
-        ...config.headers,
-        authorization: `Bearer ${accessToken}`
-      }
-    }
-    console.log(config)
-    return config
-  }
-)
-
-instance.interceptors.request.use(
   config => {
-    const { accessToken, refreshToken } = useAuthStore()
-    console.log(refreshToken)
+    const { accessToken } = useAuthStore()
 
     if (accessToken) {
       config.headers = {
         ...config.headers,
-        authorization: `Bearer ${accessToken}`,
-        apikey: import.meta.env.VITE_API_KEY
+        authorization: `Bearer ${accessToken}`
       }
     }
+
     return config
   }
 )
 
 instance.interceptors.response.use(
-  res => res.data,
+  res => {
+    console.log(res)
+    return res.data
+  },
   async error => {
-    console.log(error)
     const {
-      logout
+      refreshToken, setToken,
+      setRefreshToken, setAccessTokenExpiresAt, logout
     } = useAuthStore()
 
+    if (!refreshToken) {
+      throw new Error('No token')
+    }
 
-    // const {
-    //   refreshToken,
-    //   logout,
-    //   setToken,
-    //   setAccessTokenExpiresAt
-    // } = useAuthStore()
+    if (refreshToken && error.status === 401 && error.config && !error.config.__isRetryRequest) {
+      const response = await authService.refreshToken(refreshToken)
+
+      setToken(response.access_token)
+      setRefreshToken(response.refresh_token)
+      setAccessTokenExpiresAt(response.expires_in)
+
+      return instance.request(error.config)
+    }
 
     if (error.response.status === 401) {
       logout()
     }
-
-    // Если accessToken истек, но refreshToken еще действителен, обновляем accessToken
-    // if (refreshToken) {
-    //   try {
-    //     const response = await authService.refreshToken(refreshToken)
-    //     setToken(response.data.access_token)
-    //     setAccessTokenExpiresAt(Date.now() + response.data.expires_in * 1000)
-    //   } catch (err) {
-    //     logout()
-    //     router.push(routeNames.login)
-    //     return Promise.reject(err)
-    //   }
-    // }
 
     return Promise.reject(error)
   }
