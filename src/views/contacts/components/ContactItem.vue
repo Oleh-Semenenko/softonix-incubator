@@ -1,5 +1,5 @@
 <template>
-  <Card>
+  <Card v-loading="loading">
     <div class="flex">
       <div class="flex-grow text-sm truncate" @click.stop>
         <template v-if="editMode">
@@ -62,7 +62,7 @@
 
         <span
           class="text-red-500 font-medium text-xs cursor-pointer hover:underline"
-          @click.stop="$emit('delete', contact)"
+          @click.stop="onDelete"
         >Delete</span>
       </template>
     </div>
@@ -86,15 +86,17 @@
 </template>
 
 <script lang="ts" setup>
+const contactsStore = useContactsStore()
+const { updateContact, deleteContact } = contactsStore
 const props = defineProps<{
   contact: IContact
 }>()
 
-const emit = defineEmits(['delete', 'save'])
-
 const inputRef = ref<HTMLInputElement>()
+const loading = ref(false)
 
-const localContact = ref<Omit<IContact, 'id'>>({
+const localContact = ref<IContact>({
+  id: Date.now(),
   name: '',
   description: '',
   image: ''
@@ -118,10 +120,29 @@ async function triggerEditMode () {
   inputRef.value?.focus()
 }
 
-function onSave () {
-  emit('save', localContact.value)
+async function onSave () {
+  loading.value = true
+
+  if (isContactChange.value) {
+    await updateContact(localContact.value)
+  }
   editMode.value = false
+  loading.value = false
 }
+
+async function onDelete () {
+  loading.value = true
+
+  await deleteContact(props.contact)
+
+  loading.value = false
+}
+
+const isContactChange = computed(() => {
+  return ['name', 'description', 'image'].reduce((result: boolean, prop: string) => {
+    return result || localContact.value[prop] !== props.contact[prop]
+  }, false)
+})
 
 const imageHasError = ref(false)
 </script>

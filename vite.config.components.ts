@@ -1,15 +1,13 @@
 import { readdirSync } from 'fs'
 import { join as pathJoin } from 'pathe'
-import type { ConfigEnv } from 'vite'
 import Components from 'unplugin-vue-components/vite'
 import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
 
 /* CONFIGURATION FOR COMPONENTS AUTO-IMPORT */
-export const ComponentsBuilder = (config: ConfigEnv) => Components({
-  dts: config.command === 'serve' && './dts/components.d.ts',
+export const ComponentsBuilder = () => Components({
+  dts: './dts/components.d.ts',
   dirs: [
     './src/components',
-    './src/plugins/portal',
     ...buildViewsComponents()
   ],
   resolvers: [
@@ -25,7 +23,6 @@ function buildViewsComponents () {
       dirs.forEach((dir) => {
         const dirPath = pathJoin(dirName, dir.name)
         if (dirPath.includes('/components')) {
-          console.log(dirPath)
           componentsDirs.push(dirPath)
         }
         getComponentsDirs((dirPath))

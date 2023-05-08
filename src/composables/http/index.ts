@@ -1,5 +1,4 @@
 import axios from 'axios'
-// import { routeNames, router } from '@/router'
 
 const instance = axios.create({
   baseURL: import.meta.env.VITE_API_URL,
@@ -10,9 +9,9 @@ const instance = axios.create({
 
 instance.interceptors.request.use(
   config => {
-    const { accessToken } = useAuthStore()
+    const { accessToken, isTokenValid } = useAuthStore()
 
-    if (accessToken) {
+    if (accessToken && isTokenValid) {
       config.headers = {
         ...config.headers,
         authorization: `Bearer ${accessToken}`
@@ -25,7 +24,6 @@ instance.interceptors.request.use(
 
 instance.interceptors.response.use(
   res => {
-    console.log(res)
     return res.data
   },
   async error => {
@@ -35,7 +33,7 @@ instance.interceptors.response.use(
     } = useAuthStore()
 
     if (!refreshToken) {
-      throw new Error('No token')
+      errorNotification('This is no valid email or password')
     }
 
     if (refreshToken && error.status === 401 && error.config && !error.config.__isRetryRequest) {
@@ -43,7 +41,7 @@ instance.interceptors.response.use(
 
       setToken(response.access_token)
       setRefreshToken(response.refresh_token)
-      setAccessTokenExpiresAt(response.expires_in)
+      setAccessTokenExpiresAt(Date.now() + response.expires_in * 1000)
 
       return instance.request(error.config)
     }

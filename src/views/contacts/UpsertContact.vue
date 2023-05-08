@@ -1,6 +1,10 @@
 <template>
   <div class="flex justify-center">
-    <Card :title="cardTitle" class="w-[350px]">
+    <Card
+      v-loading="loading"
+      :title="cardTitle"
+      class="w-[350px]"
+    >
       <div class="space-y-4">
         <AppInput v-model.trim="contactForm.name" placeholder="Name" />
 
@@ -38,6 +42,8 @@ const route = useRoute()
 const { $routeNames } = useGlobalProperties()
 const { contacts, addContact, updateContact, deleteContact } = useContactsStore()
 
+const loading = ref(false)
+
 const currentContact = computed(() => contacts.find(c => c.id === +route.params.contactId))
 
 const cardTitle = computed(() => {
@@ -59,21 +65,24 @@ const isFormValid = computed(() => {
 })
 
 async function onDelete () {
+  loading.value = true
   await deleteContact(currentContact.value as IContact)
+  loading.value = false
   router.replace({ name: $routeNames.contacts })
 }
 
 async function onSave () {
   try {
+    loading.value = true
     if (currentContact.value) {
       await updateContact(contactForm)
     } else {
-      console.log(contactForm)
       await addContact(contactForm)
     }
     router.push({ name: $routeNames.contacts })
+    loading.value = false
   } catch (error) {
-    console.log(error)
+    errorNotification('We can`t save the contact')
   }
 }
 </script>

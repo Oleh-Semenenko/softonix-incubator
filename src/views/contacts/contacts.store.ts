@@ -14,9 +14,10 @@ export const useContactsStore = defineStore('contactsStore', () => {
     try {
       await contactsService.createContact(contact)
 
+      successNotification('The contact has been added')
       contacts.value.push(contact)
     } catch (error) {
-      console.log(error)
+      errorNotification('Something goes wrong')
     }
   }
 
@@ -24,9 +25,11 @@ export const useContactsStore = defineStore('contactsStore', () => {
     try {
       const currentIndex = contacts.value.findIndex(c => c.id === contact.id)
       await contactsService.updateContact(contact)
+
+      successNotification('The contact has been updated')
       contacts.value[currentIndex] = { ...contact }
     } catch (error) {
-      console.log(error)
+      errorNotification('Something goes wrong')
     }
   }
 
@@ -34,10 +37,11 @@ export const useContactsStore = defineStore('contactsStore', () => {
     try {
       await contactsService.deleteContact(contact.id)
 
+      successNotification('The contact has been deleted')
       const currentIndex = contacts.value.findIndex(c => c.id === contact.id)
       contacts.value.splice(currentIndex, 1)
     } catch (error) {
-      console.log(error)
+      errorNotification('Something goes wrong')
     }
   }
 

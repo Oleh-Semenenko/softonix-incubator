@@ -4,8 +4,3 @@ interface IContact {
   description: string
   image?: string
 }
-
-interface IContactPayload {
-  name: string
-  description: string 
-}

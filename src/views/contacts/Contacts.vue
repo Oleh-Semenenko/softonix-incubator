@@ -25,8 +25,6 @@
       class="cursor-pointer"
       :contact="contact"
       @click="editContact(contact.id)"
-      @delete="deleteContact"
-      @save="updateContact"
     />
   </div>
 </template>
@@ -37,7 +35,7 @@ const { $routeNames } = useGlobalProperties()
 const router = useRouter()
 const { logout } = useAuthStore()
 const contactsStore = useContactsStore()
-const { getContacts, updateContact, deleteContact } = contactsStore
+const { getContacts } = contactsStore
 const { contacts } = storeToRefs(contactsStore)
 
 function createNewContact () {
@@ -49,7 +47,6 @@ function editContact (contactId: number) {
 }
 
 onMounted(() => {
-  // get data for the page
   getContacts()
 })
 </script>

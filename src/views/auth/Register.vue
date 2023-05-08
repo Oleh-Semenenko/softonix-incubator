@@ -25,6 +25,16 @@
         </el-button>
       </el-form>
     </el-card>
+
+    <div class="mt-4 flex gap-3 justify-center">
+      <p>Already have an account?</p>
+      <RouterLink
+        :to="{name: $routeNames.login}"
+        class="text-blue-400 hover:text-blue-600 hover:underline "
+      >
+        Sign in
+      </RouterLink>
+    </div>
   </div>
 </template>
 

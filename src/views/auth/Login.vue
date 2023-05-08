@@ -25,6 +25,16 @@
         </el-button>
       </el-form>
     </el-card>
+
+    <div class="mt-4 flex gap-3 justify-center">
+      <p>New user?</p>
+      <RouterLink
+        :to="{name: $routeNames.register}"
+        class="text-blue-400 hover:text-blue-600 hover:underline "
+      >
+        Sign up
+      </RouterLink>
+    </div>
   </div>
 </template>
 
@@ -52,7 +62,10 @@ function submit () {
       loading.value = true
 
       login(formModel)
-        .then(() => router.push({ name: $routeNames.contacts }))
+        .then(() => {
+          successNotification('Login was successful')
+          router.push({ name: $routeNames.contacts })
+        })
         .finally(() => (loading.value = false))
     }
   })
