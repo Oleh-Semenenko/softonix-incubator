@@ -14,7 +14,11 @@ export const routes: Array<RouteRecordRaw> = [
     name: routeNames.rootPage,
     redirect: { name: routeNames.contacts }
   },
-
+  {
+    path: '/lazy-load',
+    name: routeNames.loadImages,
+    component: () => import('@/views/images/ImagesLoading.vue')
+  },
   ...authRoutes,
   ...contactsRoutes
 ]

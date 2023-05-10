@@ -1,61 +1,54 @@
 <template>
-  <!-- <div
-    width="full"
-    height="full"
+  <div
+    class="w-full h-full"
   >
-    <el-skeleton
-      :animated="true"
-      :loading="!isLoaded"
-    >
+    <el-skeleton :loading="isLoading" class="w-[300px] h-full" animated>
       <template #template>
-        <el-skeleton-item variant="image" />
+        <el-skeleton-item style="width: 100%; height: 100%" variant="image" />
       </template>
-      <template #default>
+      <template v-if="imageError" #default>
         <img
-          v-if="isLoaded"
-          v-scroll
-          :width="800"
-          :height="400"
-          :data-src="src"
-          :alt="props.alt"
-          @load="onLoad"
+          :src="placeholder"
         >
       </template>
     </el-skeleton>
-  </div> -->
-  <div
-    width="full"
-    height="full"
-  >
+
     <img
       v-scroll
-      :width="800"
-      :height="400"
+      class="object-cover"
       :data-src="src"
-      :alt="props.alt"
-      @load="onLoad"
+      :alt="imageError ? '' : props.alt"
+      @load="onImageLoad"
+      @error="onImageError"
     >
   </div>
 </template>
 
 <script lang="ts" setup>
+import placeholder from '@/assets/images/placeholder.png'
 const props = defineProps<{
   src: string
   alt: string
 }>()
+const emit = defineEmits(['error', 'load'])
+const isLoading = ref(true)
+const imageError = ref(false)
 
-const emit = defineEmits(['load', 'error'])
+const src = computed(() => imageError.value ? placeholder : props.src)
 
-const isLoaded = ref(false)
+const onImageLoad = () => {
+  isLoading.value = false
 
-const placeholder = 'https://developers.elementor.com/docs/assets/img/elementor-placeholder-image.png'
-
-const src = computed(() => props.src ? props.src : placeholder)
-
-const onLoad = () => {
-  isLoaded.value = true
   emit('load')
 }
+
+const onImageError = () => {
+  imageError.value = true
+  isLoading.value = false
+
+  emit('error')
+}
+
 const vScroll = {
   mounted: (el: HTMLImageElement) => {
     function loadImage () {
