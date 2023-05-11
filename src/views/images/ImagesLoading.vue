@@ -11,7 +11,7 @@
   <div
     v-for="image in images"
     :key="image.src"
-    class="w-[400px] h-[300px] mx-auto"
+    class="w-[400px] h-[300px] mx-auto mb-6"
   >
     <LazyImg
       :src="image.src"
@@ -21,10 +21,11 @@
 </template>
 
 <script lang="ts" setup>
+const LazyImg = defineAsyncComponent(() => import('@/components/LazyImg.vue'))
+
 const router = useRouter()
 const { $routeNames } = useGlobalProperties()
 
-const LazyImg = defineAsyncComponent(() => import('@/components/LazyImg.vue'))
 const images = [
   { src: 'https://images.pexels.com/photos/866496/pexels-photo-866496.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1', alt: 'cat' },
   { src: 'https://images.pexels.com/photos/384555/pexels-photo-384555.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1', alt: 'cat' },
